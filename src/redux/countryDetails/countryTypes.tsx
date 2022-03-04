@@ -1,0 +1,2 @@
+export const COUNTRYINFO = "COUNTRYINFO";
+export const WEATHERINFO = "WEATHERINFO";

@@ -1,21 +1,22 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
-import App from "./App";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import { countryStore } from "./redux/countryDetails/countryStore";
 import { applyMiddleware, createStore } from "redux";
 import thunk from "redux-thunk";
+import CountryForm from "./components/CountryForm";
+import { countryStore } from "./redux/countryDetails/countryStore";
 const store = createStore(countryStore, applyMiddleware(thunk));
 
-test("renders learn react link", () => {
+test("check Form", () => {
   render(
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <CountryForm />
       </BrowserRouter>
     </Provider>
   );
-  // const linkElement = screen.getByText(/learn react/i);
-  // expect(linkElement).toBeInTheDocument();
+  const h1Element = screen.getByText("Country Detail Application");
+  expect(h1Element).toBeInTheDocument();
+  const input = screen.getByTestId("NameInput");
+  expect(input).toBeInTheDocument();
 });
